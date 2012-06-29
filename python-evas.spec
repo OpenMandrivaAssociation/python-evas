@@ -11,7 +11,7 @@
 #cd ..; \
 #tar -Jcf python-evas-$PKG_VERSION.tar.xz python-evas/ --exclude .svn --exclude .*ignore
 
-%define svnrev  66467
+%define svnrev  72422
 
 Summary:	Evas bindings for Python 
 Name:		python-evas
