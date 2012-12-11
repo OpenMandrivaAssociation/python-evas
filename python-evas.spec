@@ -11,16 +11,14 @@
 #cd ..; \
 #tar -Jcf python-evas-$PKG_VERSION.tar.xz python-evas/ --exclude .svn --exclude .*ignore
 
-%define svnrev  72422
-
-Summary:	Evas bindings for Python 
+Summary:	Evas bindings for Python
 Name:		python-evas
-Version:	0.7.3
-Release:	0.%{svnrev}.1
+Version:	1.7.0
+Release:	1
 Group:		Graphical desktop/Enlightenment
 License:	GPLv2
 URL:		http://www.enlightenment.org/
-Source0:	%{name}-%{version}.%{svnrev}.tar.xz
+Source0:	http://download.enlightenment.org/releases/BINDINGS/python/%{name}-%{version}.tar.bz2
 
 BuildRequires:	pkgconfig(eina)
 BuildRequires:	pkgconfig(evas)
@@ -29,7 +27,7 @@ BuildRequires:	python-cython
 %py_requires -d
 
 %description
-Python support files for Evas
+Python support files for Evas.
 
 %package devel
 Summary:	Development files for %{name}
@@ -39,7 +37,7 @@ Group:		Development/Python
 Development files for the Python wrapper for the Evas libraries.
 
 %prep
-%setup -qn %{name}
+%setup -q
 
 %build
 NOCONFIGURE=yes ./autogen.sh
@@ -47,9 +45,7 @@ NOCONFIGURE=yes ./autogen.sh
 %make
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std
-find %{buildroot} -type f -name "*.la" -exec rm -f {} ';'
 
 %files
 %doc README
@@ -59,4 +55,13 @@ find %{buildroot} -type f -name "*.la" -exec rm -f {} ';'
 %{_libdir}/pkgconfig/*.pc
 %{_includedir}/python*/evas/*
 %{_datadir}/%{name}/*
+
+%changelog
+* Fri Jun 29 2012 Alexander Khrukin <akhrukin@mandriva.org> 0.7.3-0.72422.1
++ Revision: 807488
+- revision update 72422
+
+* Tue Jan 10 2012 Matthew Dawkins <mattydaw@mandriva.org> 0.7.3-0.66467.1
++ Revision: 759542
+- imported package python-evas
 
